@@ -1,25 +1,23 @@
 # Behind-the-Scenes Analysis
 
 ## 1. Problem Analysis & Modeling
-- **Mô hình hóa:** Chúng ta có thể coi ma trận nhà máy là một đồ thị vô hướng, không trọng số. Trong đó, mỗi ô $(r, c)$ là một đỉnh, và các ô trống kề nhau là các cạnh nối giữa các đỉnh.
-- **Yêu cầu:** Tìm đường đi ngắn nhất giữa hai đỉnh `S` và `E`.
+- **Modeling:** We can model the factory grid as an unweighted, undirected graph. Each cell $(r, c)$ represents a vertex, and the adjacent empty cells are the edges connecting these vertices.
+- **Objective:** Find the shortest path between the two vertices `S` and `E`.
 
 ## 2. Algorithm Selection
-- **Thuật toán sử dụng:** Breadth-First Search (BFS - Tìm kiếm theo chiều rộng).
-- **Lý do chọn:** 
-    - Đối với đồ thị không có trọng số (khoảng cách giữa các ô luôn là 1), BFS luôn đảm bảo tìm thấy đường đi ngắn nhất ngay khi chạm tới đích.
-    - So với DFS (Tìm kiếm theo chiều sâu), BFS hiệu quả hơn cho bài toán tìm đường ngắn nhất và không bị lỗi tràn ngăn xếp (Stack Overflow) với ma trận lớn $1000 \times 1000$.
+- **Algorithm Used:** Breadth-First Search (BFS).
+- **Reason for Selection:** - For unweighted graphs (where the distance between any two valid adjacent cells is always 1), BFS guarantees finding the shortest path the moment it reaches the destination.
+    - Compared to Depth-First Search (DFS), BFS is more efficient for shortest-path problems and avoids Stack Overflow errors when dealing with a large 1000x1000 grid.
 
 ## 3. Implementation Details
-- **Data Structure:** 
-    - `Queue` (sử dụng `ArrayDeque` trong Java) để lưu trữ các ô cần duyệt theo thứ tự lớp.
-    - Mảng `dist[N][M]` để lưu khoảng cách từ `S` đến mỗi ô và đánh dấu các ô đã thăm (`visited`).
+- **Data Structure:** - `Queue` (using `ArrayDeque` in Java) to store the cells to be visited layer by layer.
+    - A `dist[N][M]` array (or a `visited` boolean matrix) to store the distance from `S` to each cell and to mark visited cells.
 - **Complexity:**
-    - **Time Complexity:** $O(N \times M)$. Mỗi ô được đưa vào Queue và xử lý đúng một lần. Với $10^6$ ô, thuật toán chạy mất khoảng ~0.1-0.2s, dưới ngưỡng 1s quy định.
-    - **Space Complexity:** $O(N \times M)$ để lưu trữ ma trận và mảng đánh dấu.
+    - **Time Complexity:** $O(N \times M)$. Each cell is pushed into the Queue and processed exactly once. With 1,000,000 cells, the algorithm takes roughly ~0.1 to 0.2 seconds, well within the 1.0s limit.
+    - **Space Complexity:** $O(N \times M)$ to store the 2D grid and the visited tracking array.
 
 ## 4. Edge Cases & Test Design
-- **Edge Case 1:** Điểm `S` và `E` nằm cạnh nhau (Kết quả = 1).
-- **Edge Case 2:** Không có đường đi từ `S` tới `E` (Kết quả = -1).
-- **Edge Case 3:** Mê cung cực lớn ($1000 \times 1000$) với đường đi ngoằn ngoèo để kiểm tra hiệu năng.
-- **Edge Case 4:** Ma trận chỉ có 1 hàng hoặc 1 cột.
+- **Edge Case 1:** `S` and `E` are immediately adjacent to each other (Expected Output = 1).
+- **Edge Case 2:** No valid path exists from `S` to `E` (Expected Output = -1).
+- **Edge Case 3:** An extremely large maze (1000x1000) with a long, sinuous path to stress-test the time performance.
+- **Edge Case 4:** The grid consists of only 1 row or 1 column.
