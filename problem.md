@@ -1,27 +1,27 @@
 # Problem: Rescue Operation - The Last Exit
 
 ## Problem Statement
-Sau một trận động đất dữ dội, nhà máy công nghệ cao X bị sụp đổ một phần, biến cấu trúc bên trong thành một mê cung phức tạp. Một Robot cứu hộ được cử vào để xác định lộ trình ngắn nhất từ vị trí hiện tại đến lối thoát hiểm an toàn nhằm truyền tín hiệu cứu hộ cho các nạn nhân còn kẹt lại.
+Following a massive earthquake, high-tech factory X partially collapsed, turning its internal structure into a complex maze. A rescue robot is deployed to determine the shortest path from its current position to a safe exit in order to transmit a rescue signal for the trapped victims.
 
-Nhà máy được mô phỏng dưới dạng một lưới ma trận kích thước $N \times M$. Robot có thể di chuyển sang 4 ô kề cạnh (Lên, Xuống, Trái, Phải) nếu ô đó không có vật cản. Hãy giúp Robot tìm số bước di chuyển ít nhất để đến được lối thoát.
+The factory is modeled as a 2D grid of size $N \times M$. The robot can move to 4 adjacent cells (Up, Down, Left, Right) if the target cell is not blocked by an obstacle. Help the robot find the minimum number of steps required to reach the exit.
 
 ## Input Format
-- Dòng đầu tiên chứa hai số nguyên $N$ và $M$ ($1 \le N, M \le 1000$) - kích thước của nhà máy.
-- $N$ dòng tiếp theo, mỗi dòng chứa $M$ ký tự đại diện cho sơ đồ nhà máy:
-    - `S`: Vị trí xuất phát của Robot (Start).
-    - `E`: Vị trí lối thoát hiểm (Exit).
-    - `#`: Vật cản (tường đổ nát, lửa, không thể đi qua).
-    - `.`: Đường trống (có thể di chuyển).
+- The first line contains two integers $N$ and $M$ ($1 \le N, M \le 1000$) - the dimensions of the factory.
+- The next $N$ lines, each containing $M$ characters, represent the factory map:
+    - `S`: The robot's starting position (Start).
+    - `E`: The exit position (Exit).
+    - `#`: Obstacle (collapsed walls, fire, impassable).
+    - `.`: Empty path (passable).
 
 ## Output Format
-- Một số nguyên duy nhất đại diện cho số bước di chuyển ít nhất từ `S` đến `E`.
-- Nếu không có bất kỳ đường đi nào khả thi, in ra `-1`.
+- A single integer representing the minimum number of steps from `S` to `E`.
+- If no valid path exists, print `-1`.
 
 ## Constraints
 - $1 \le N, M \le 1000$
-- Tổng số ô trong ma trận tối đa là $10^6$.
-- Thời gian giới hạn: 1.0 giây.
-- Bộ nhớ giới hạn: 256 MB.
+- The total number of cells in the grid is at most 1,000,000.
+- Time Limit: 1.0 second.
+- Memory Limit: 256 MB.
 
 ## Sample Test Cases
 
